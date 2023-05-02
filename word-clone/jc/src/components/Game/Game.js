@@ -42,7 +42,6 @@ function Game() {
     <>
       <Guess answer={currentWord} userAttempts={userAttempts} />
       <Form updateUserAttempts={updateUserAttempts} gameStatus={gameStatus} />
-      <p>test</p>
       {gameStatus !== "running" && (
         <Banner gameStatus={gameStatus}>
           {gameStatus === "won" ? (
