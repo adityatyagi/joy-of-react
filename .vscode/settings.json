@@ -1,0 +1,15 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "terminal.integrated.gpuAcceleration": "off",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "**/hooks": true,
+    "**/word-clone": true,
+    "**/patterns": true
+  }
+}
