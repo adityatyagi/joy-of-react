@@ -33,10 +33,18 @@ function Toast({ variant, message, handleToastDismiss }) {
           <div className={styles.iconContainer}>
             <Icon size={24} />
           </div>
-          <p className={styles.content}>{message}</p>
-          <button className={styles.closeButton} onClick={handleDismissToast}>
+          <p className={styles.content}>
+            <VisuallyHidden>{variant + " - "}</VisuallyHidden>
+            {message}
+          </p>
+          <button
+            className={styles.closeButton}
+            onClick={handleDismissToast}
+            aria-label="Dismiss message"
+            aria-live="off"
+          >
             <X size={24} />
-            <VisuallyHidden>Dismiss message</VisuallyHidden>
+            {/* <VisuallyHidden>Dismiss message</VisuallyHidden> */}
           </button>
         </div>
       )}

@@ -18,8 +18,13 @@ const ToastProvider = ({ children }) => {
     const newAllToasts = allToasts.filter((item) => item.id !== id);
     setAllToasts(newAllToasts);
   };
+
+  const resetAll = React.useCallback(() => {
+    setAllToasts([]);
+  }, []);
   const toastProviderValue = {
     allToasts,
+    resetAll,
     addToasts,
     handleToastDismiss,
   };
