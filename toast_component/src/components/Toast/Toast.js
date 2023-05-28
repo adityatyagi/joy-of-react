@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   AlertOctagon,
   AlertTriangle,
@@ -7,6 +7,7 @@ import {
   X,
 } from "react-feather";
 
+import { ToastContext } from "../ToastProvider";
 import VisuallyHidden from "../VisuallyHidden";
 
 import styles from "./Toast.module.css";
@@ -18,36 +19,29 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-function Toast({ variant, message, handleToastDismiss }) {
-  const [showToast, setShowToast] = React.useState(true);
-
-  const handleDismissToast = () => {
-    setShowToast(false);
-    handleToastDismiss();
-  };
+function Toast({ id, variant, children }) {
+  const { handleToastDismiss } = useContext(ToastContext);
   const Icon = ICONS_BY_VARIANT[variant];
   return (
     <>
-      {showToast && (
-        <div className={`${styles.toast} ${styles[variant]}`}>
-          <div className={styles.iconContainer}>
-            <Icon size={24} />
-          </div>
-          <p className={styles.content}>
-            <VisuallyHidden>{variant + " - "}</VisuallyHidden>
-            {message}
-          </p>
-          <button
-            className={styles.closeButton}
-            onClick={handleDismissToast}
-            aria-label="Dismiss message"
-            aria-live="off"
-          >
-            <X size={24} />
-            {/* <VisuallyHidden>Dismiss message</VisuallyHidden> */}
-          </button>
+      <div className={`${styles.toast} ${styles[variant]}`}>
+        <div className={styles.iconContainer}>
+          <Icon size={24} />
         </div>
-      )}
+        <p className={styles.content}>
+          <VisuallyHidden>{variant + " - "}</VisuallyHidden>
+          {children}
+        </p>
+        <button
+          className={styles.closeButton}
+          onClick={() => handleToastDismiss(id)}
+          aria-label="Dismiss message"
+          aria-live="off"
+        >
+          <X size={24} />
+          {/* <VisuallyHidden>Dismiss message</VisuallyHidden> */}
+        </button>
+      </div>
     </>
   );
 }
