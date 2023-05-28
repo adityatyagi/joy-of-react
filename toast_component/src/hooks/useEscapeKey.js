@@ -1,6 +1,5 @@
 import React from "react";
 const useEscapeKey = (callback) => {
-  console.log(`React`);
   React.useEffect(() => {
     // add the event listener
     const handleEventListener = (event) => {
